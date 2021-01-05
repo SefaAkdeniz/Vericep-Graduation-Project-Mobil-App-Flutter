@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-class InputPassword extends StatefulWidget {
+class InputUsernameRegister extends StatefulWidget {
   @override
-  _InputPasswordState createState() => _InputPasswordState();
+  _InputUsernameRegisterState createState() => _InputUsernameRegisterState();
 }
 
-class _InputPasswordState extends State<InputPassword> {
+class _InputUsernameRegisterState extends State<InputUsernameRegister> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 20, left: 50, right: 50),
+      padding: const EdgeInsets.only(left: 50, right: 50),
       child: Container(
         height: 60,
         width: MediaQuery.of(context).size.width,
@@ -17,10 +17,10 @@ class _InputPasswordState extends State<InputPassword> {
           style: TextStyle(
             color: Colors.white,
           ),
-          obscureText: true,
           decoration: InputDecoration(
             border: InputBorder.none,
-            labelText: 'Şifre',
+            fillColor: Colors.lightGreenAccent,
+            labelText: 'Kullanıcı Adı',
             labelStyle: TextStyle(
               color: Colors.white70,
             ),

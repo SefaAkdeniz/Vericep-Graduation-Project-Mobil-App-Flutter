@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
-class VerticalText extends StatefulWidget {
+class VerticalTextRegister extends StatefulWidget {
   @override
-  _VerticalTextState createState() => _VerticalTextState();
+  _VerticalTextRegisterState createState() => _VerticalTextRegisterState();
 }
 
-class _VerticalTextState extends State<VerticalText> {
+class _VerticalTextRegisterState extends State<VerticalTextRegister> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 60, left: 10),
+      padding: const EdgeInsets.only(left: 10),
       child: RotatedBox(
           quarterTurns: -1,
           child: Text(
-            'Giriş Yap',
+            'Kaydol',
             style: TextStyle(
               color: Colors.white,
               fontSize: 38,

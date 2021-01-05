@@ -4,7 +4,7 @@ import 'package:vericep/widget/firstTime.dart';
 import 'package:vericep/widget/inputUsername.dart';
 import 'package:vericep/widget/inputPassword.dart';
 import 'package:vericep/widget/textLogin.dart';
-import 'package:vericep/widget/verticalText.dart';
+import 'package:vericep/widget/verticalTextLogin.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -27,11 +27,11 @@ class _LoginPageState extends State<LoginPage> {
             Column(
               children: <Widget>[
                 Row(children: <Widget>[
-                  VerticalText(),
+                  VerticalTextLogin(),
                   TextLogin(),
                 ]),
                 InputUsername(),
-                PasswordInput(),
+                InputPassword(),
                 ButtonLogin(),
                 FirstTime(),
               ],

@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:vericep/pages/register.page.dart';
+import 'package:vericep/pages/login.page.dart';
+import 'package:vericep/pages/login.page.dart';
 
-class FirstTime extends StatefulWidget {
-  @override
-  _FirstTimeState createState() => _FirstTimeState();
-}
-
-class _FirstTimeState extends State<FirstTime> {
+class UserOld extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 30, left: 30),
+      padding: const EdgeInsets.only(top: 10, left: 30),
       child: Container(
         alignment: Alignment.topRight,
         //color: Colors.red,
@@ -18,7 +14,7 @@ class _FirstTimeState extends State<FirstTime> {
         child: Row(
           children: <Widget>[
             Text(
-              'Hesabın yok mu?',
+              'Hesabın var mı?',
               style: TextStyle(
                 fontSize: 12,
                 color: Colors.white70,
@@ -28,10 +24,10 @@ class _FirstTimeState extends State<FirstTime> {
               padding: EdgeInsets.all(0),
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => RegisterPage()));
+                    MaterialPageRoute(builder: (context) => LoginPage()));
               },
               child: Text(
-                'Kaydol',
+                'Giriş Yap',
                 style: TextStyle(
                   fontSize: 12,
                   color: Colors.white,

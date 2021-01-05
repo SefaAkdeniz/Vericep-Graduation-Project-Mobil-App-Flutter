@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-class InputPassword extends StatefulWidget {
+class InputPasswordRegister extends StatefulWidget {
   @override
-  _InputPasswordState createState() => _InputPasswordState();
+  _InputPasswordRegisterState createState() => _InputPasswordRegisterState();
 }
 
-class _InputPasswordState extends State<InputPassword> {
+class _InputPasswordRegisterState extends State<InputPasswordRegister> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 20, left: 50, right: 50),
+      padding: const EdgeInsets.only(left: 50, right: 50),
       child: Container(
         height: 60,
         width: MediaQuery.of(context).size.width,
