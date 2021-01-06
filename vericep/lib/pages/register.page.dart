@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:vericep/widget/buttonRegister.dart';
-import 'package:vericep/widget/inputLastName.dart';
-import 'package:vericep/widget/inputMail.dart';
-import 'package:vericep/widget/inputUsernameRegister.dart';
-import 'package:vericep/widget/inputName.dart';
-import 'package:vericep/widget/inputPasswordRegister.dart';
-import 'package:vericep/widget/verticalTextRegister.dart';
-import 'package:vericep/widget/textRegister.dart';
-import 'package:vericep/widget/userOld.dart';
+import 'package:vericep/widgets/registerWidgets/buttonRegister.dart';
+import 'package:vericep/widgets/registerWidgets/inputLastName.dart';
+import 'package:vericep/widgets/registerWidgets/inputMail.dart';
+import 'package:vericep/widgets/registerWidgets/inputName.dart';
+import 'package:vericep/widgets/registerWidgets/inputPasswordRegister.dart';
+import 'package:vericep/widgets/registerWidgets/inputUsernameRegister.dart';
+import 'package:vericep/widgets/registerWidgets/textRegister.dart';
+import 'package:vericep/widgets/registerWidgets/userOld.dart';
+import 'package:vericep/widgets/registerWidgets/verticalTextRegister.dart';
+
 
 class RegisterPage extends StatefulWidget {
   @override

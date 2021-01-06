@@ -16,7 +16,7 @@ class _ButtonRegisterState extends State<ButtonRegister> {
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(boxShadow: [
           BoxShadow(
-            color: Colors.purple[300],
+            color: Colors.deepPurple[300],
             blurRadius: 10.0, // has the effect of softening the shadow
             spreadRadius: 1.0, // has the effect of extending the shadow
             offset: Offset(

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:vericep/widget/buttonLogin.dart';
-import 'package:vericep/widget/firstTime.dart';
-import 'package:vericep/widget/inputUsername.dart';
-import 'package:vericep/widget/inputPassword.dart';
-import 'package:vericep/widget/textLogin.dart';
-import 'package:vericep/widget/verticalTextLogin.dart';
+import 'package:vericep/widgets/loginWidgets/buttonLogin.dart';
+import 'package:vericep/widgets/loginWidgets/firstTime.dart';
+import 'package:vericep/widgets/loginWidgets/inputPassword.dart';
+import 'package:vericep/widgets/loginWidgets/inputUsername.dart';
+import 'package:vericep/widgets/loginWidgets/textLogin.dart';
+import 'package:vericep/widgets/loginWidgets/verticalTextLogin.dart';
 
 class LoginPage extends StatefulWidget {
   @override
