@@ -22,4 +22,14 @@ class User {
     last_login = json["last_login"];
     date_joined = json["date_joined"];
   }
+
+  Map toJsonRegister() {
+    return {
+      "username": username,
+      "first_name": first_name,
+      "last_name": last_name,
+      "email": email,
+      "password": password
+    };
+  }
 }
