@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 class InputMail extends StatefulWidget {
+  final TextEditingController txtMail;
+  InputMail(this.txtMail);
+
   @override
   _InputMailState createState() => _InputMailState();
 }
@@ -14,6 +17,7 @@ class _InputMailState extends State<InputMail> {
         height: 60,
         width: MediaQuery.of(context).size.width,
         child: TextField(
+          controller: widget.txtMail,
           style: TextStyle(
             color: Colors.white,
           ),

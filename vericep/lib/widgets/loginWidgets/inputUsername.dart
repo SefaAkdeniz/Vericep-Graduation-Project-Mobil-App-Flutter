@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 class InputUsername extends StatefulWidget {
+  TextEditingController txtUsername;
+  InputUsername(this.txtUsername);
+
   @override
   _InputUsernameState createState() => _InputUsernameState();
 }
@@ -14,6 +17,7 @@ class _InputUsernameState extends State<InputUsername> {
         height: 60,
         width: MediaQuery.of(context).size.width,
         child: TextField(
+          controller: widget.txtUsername,
           style: TextStyle(
             color: Colors.white,
           ),

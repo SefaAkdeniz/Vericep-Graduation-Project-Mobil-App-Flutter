@@ -16,6 +16,12 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  final TextEditingController txtUsername = TextEditingController();
+  final TextEditingController txtPassword = TextEditingController();
+  final TextEditingController txtName = TextEditingController();
+  final TextEditingController txtLastName = TextEditingController();
+  final TextEditingController txtMail = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,12 +42,12 @@ class _RegisterPageState extends State<RegisterPage> {
                     TextRegister(),
                   ],
                 ),
-                InputUsernameRegister(),
-                InputPasswordRegister(),
-                InputName(),
-                InputLastName(),
-                InputMail(),
-                ButtonRegister(),
+                InputUsernameRegister(txtUsername),
+                InputPasswordRegister(txtPassword),
+                InputName(txtName),
+                InputLastName(txtLastName),
+                InputMail(txtMail),
+                ButtonRegister(txtUsername,txtPassword,txtName,txtLastName,txtMail),
                 UserOld(),
               ],
             ),
