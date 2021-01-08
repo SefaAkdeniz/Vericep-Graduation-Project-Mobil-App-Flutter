@@ -9,7 +9,6 @@ import 'package:vericep/widgets/registerWidgets/textRegister.dart';
 import 'package:vericep/widgets/registerWidgets/userOld.dart';
 import 'package:vericep/widgets/registerWidgets/verticalTextRegister.dart';
 
-
 class RegisterPage extends StatefulWidget {
   @override
   _RegisterPageState createState() => _RegisterPageState();
@@ -47,7 +46,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 InputName(txtName),
                 InputLastName(txtLastName),
                 InputMail(txtMail),
-                ButtonRegister(txtUsername,txtPassword,txtName,txtLastName,txtMail),
+                ButtonRegister(
+                    txtUsername, txtPassword, txtName, txtLastName, txtMail),
                 UserOld(),
               ],
             ),

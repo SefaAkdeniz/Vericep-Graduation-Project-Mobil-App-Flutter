@@ -72,7 +72,6 @@ class _ButtonRegisterState extends State<ButtonRegister> {
                 widget.txtPassword.text)
             .toJsonRegister())
         .then((value) {
-      print(value.message);
       if (value.result == 1) {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => LoginPage()));

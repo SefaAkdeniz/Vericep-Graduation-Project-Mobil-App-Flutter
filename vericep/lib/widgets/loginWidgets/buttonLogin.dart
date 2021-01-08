@@ -62,18 +62,20 @@ class _ButtonLoginState extends State<ButtonLogin> {
   }
 
   void login() {
-    UserServices.signIn(
-            User.forLogin(widget.txtUsername.text, widget.txtPassword.text)
-                .toJsonLogin())
-        .then((value) {
-      if (value["result"] == 1) {
-        var user = value["userInfo"];
-        _showDialog("Tebrikler.", "Giriş Yapıldı");
-      } else {
-        _showDialog("Maalesef işlem başarısız.",
-            "Sisteme kayıtlı kullanıcı bulunamadı");
-      }
-    });
+    if (isFormValid()) {
+      UserServices.signIn(
+              User.forLogin(widget.txtUsername.text, widget.txtPassword.text)
+                  .toJsonLogin())
+          .then((value) {
+        if (value["result"] == 1) {
+          var user = value["userInfo"];
+          _showDialog("Tebrikler.", "Giriş Yapıldı.");
+        } else {
+          _showDialog("Maalesef işlem başarısız.",
+              "Sisteme kayıtlı kullanıcı bulunamadı.");
+        }
+      });
+    }
   }
 
   void _showDialog(title, message) {
@@ -94,5 +96,19 @@ class _ButtonLoginState extends State<ButtonLogin> {
         );
       },
     );
+  }
+
+  bool isFormValid() {
+    if (widget.txtUsername.text.length < 3) {
+      _showDialog("Maalesef işlem başarısız.",
+          "Kullanıcı adı 3 karakterden kısa olamaz.");
+      return false;
+    } else if (widget.txtPassword.text.length < 8) {
+      _showDialog(
+          "Maalesef işlem başarısız.", "Şifre 8 karakterden kısa olamaz.");
+      return false;
+    } else {
+      return true;
+    }
   }
 }

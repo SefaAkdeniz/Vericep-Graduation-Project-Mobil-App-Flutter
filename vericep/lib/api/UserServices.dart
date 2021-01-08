@@ -11,7 +11,7 @@ class UserServices {
               'Content-Type': 'application/json; charset=UTF-8',
             },
             body: jsonEncode(body));
-    if (response.statusCode == 201) {
+    if (response.statusCode == 200) {
       return Response.fromJson(jsonDecode(response.body));
     } else {
       throw Exception('Failed register.');
