@@ -23,6 +23,10 @@ class User {
     date_joined = json["date_joined"];
   }
 
+  Map toJsonLogin() {
+    return {"username": username, "password": password};
+  }
+
   Map toJsonRegister() {
     return {
       "username": username,

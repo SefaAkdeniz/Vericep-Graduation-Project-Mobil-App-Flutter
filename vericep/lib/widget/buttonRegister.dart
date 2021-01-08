@@ -5,8 +5,13 @@ import 'package:vericep/models/user.dart';
 import 'package:vericep/pages/login.page.dart';
 
 class ButtonRegister extends StatefulWidget {
-  final List<TextEditingController> txtFormInputs;
-  ButtonRegister(this.txtFormInputs);
+  final TextEditingController txtUsername;
+  final TextEditingController txtPassword;
+  final TextEditingController txtName;
+  final TextEditingController txtLastName;
+  final TextEditingController txtMail;
+  ButtonRegister(this.txtUsername, this.txtPassword, this.txtName,
+      this.txtLastName, this.txtMail);
 
   @override
   _ButtonRegisterState createState() => _ButtonRegisterState();
@@ -60,11 +65,11 @@ class _ButtonRegisterState extends State<ButtonRegister> {
 
   void register() {
     UserServices.register(User.forRegister(
-                widget.txtFormInputs[0].text,
-                widget.txtFormInputs[2].text,
-                widget.txtFormInputs[3].text,
-                widget.txtFormInputs[4].text,
-                widget.txtFormInputs[1].text)
+                widget.txtUsername.text,
+                widget.txtName.text,
+                widget.txtLastName.text,
+                widget.txtMail.text,
+                widget.txtPassword.text)
             .toJsonRegister())
         .then((value) {
       print(value.message);
