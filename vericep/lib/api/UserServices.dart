@@ -19,7 +19,6 @@ class UserServices {
   }
 
   static Future<Map> signIn(Map body) async {
-    print(body);
     final http.Response response =
         await http.post('http://10.0.2.2:8000/user/login/',
             headers: <String, String>{
@@ -27,6 +26,9 @@ class UserServices {
             },
             body: jsonEncode(body));
     if (response.statusCode == 200) {
+      if (jsonDecode(response.body)["result"] == 0) {
+        return {"result": jsonDecode(response.body)["result"], "userInfo": ""};
+      }
       return {
         "result": jsonDecode(response.body)["result"],
         "userInfo": User.fromJson(jsonDecode(response.body)["userInfo"])
