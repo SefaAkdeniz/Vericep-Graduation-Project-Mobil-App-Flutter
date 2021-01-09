@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:vericep/api/UserServices.dart';
+import 'package:vericep/api/userServices.dart';
 import 'package:vericep/models/user.dart';
+import 'package:vericep/pages/main.page.dart';
 
 class ButtonLogin extends StatefulWidget {
   TextEditingController txtUsername;
@@ -68,7 +69,11 @@ class _ButtonLoginState extends State<ButtonLogin> {
                   .toJsonLogin())
           .then((value) {
         if (value["result"] == 1) {
-          var user = value["userInfo"];
+          User currentUser = value["userInfo"];
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => new MainPage(currentUser)));
           _showDialog("Tebrikler.", "Giriş Yapıldı.");
         } else {
           _showDialog("Maalesef işlem başarısız.",

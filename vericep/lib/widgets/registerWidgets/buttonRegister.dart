@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vericep/api/UserServices.dart';
+import 'package:vericep/api/userServices.dart';
 import 'package:vericep/models/response.dart';
 import 'package:vericep/models/user.dart';
 import 'package:vericep/pages/login.page.dart';
