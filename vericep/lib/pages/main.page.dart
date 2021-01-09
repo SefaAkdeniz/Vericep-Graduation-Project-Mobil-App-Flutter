@@ -14,8 +14,9 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  Widget currentPage;
-  var currentColor;
+  Widget currentPage = MLPage();
+  var currentColor = Colors.blueAccent;
+  Widget currentAddButton;
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +31,7 @@ class _MainPageState extends State<MainPage> {
         ),
         bottomNavigationBar: CurvedNavigationBar(
           backgroundColor: currentColor,
+          index: 1,
           items: <Widget>[
             Icon(Icons.credit_card_rounded, size: 30),
             Icon(Icons.android_sharp, size: 30),
@@ -43,10 +45,17 @@ class _MainPageState extends State<MainPage> {
                   currentPage =
                       CreditCardPage(widget.currentUser.id.toString());
                   currentColor = Colors.redAccent;
+                  currentAddButton = FloatingActionButton(
+                    onPressed: () {},
+                    backgroundColor: Colors.red,
+                    child: Icon(Icons.add),
+                    tooltip: "Yeni kart ekle.",
+                  );
                   break;
                 case 1:
                   currentPage = MLPage();
                   currentColor = Colors.blueAccent;
+                  currentAddButton = null;
                   break;
               }
             });
@@ -59,6 +68,7 @@ class _MainPageState extends State<MainPage> {
             child: currentPage,
           ),
         ),
+        floatingActionButton: currentAddButton,
       ),
     );
   }

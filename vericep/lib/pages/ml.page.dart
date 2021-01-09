@@ -28,12 +28,15 @@ class _MLPageState extends State<MLPage> {
     return ListView.builder(
         itemCount: mlCount,
         itemBuilder: (BuildContext context, int position) {
-          return Card(
-            color: Colors.white,
-            child: ListTile(
-              title: Text(this.mls[position].name),
-              subtitle: Text(this.mls[position].description),
-              trailing: IconButton(icon: Icon(Icons.keyboard_arrow_right)),
+          return Padding(
+            padding: const EdgeInsets.only(left:8.0,right: 8.0),
+            child: Card(
+              color: Colors.white,
+              child: ListTile(
+                title: Text(this.mls[position].name),
+                subtitle: Text(this.mls[position].description),
+                trailing: IconButton(icon: Icon(Icons.keyboard_arrow_right)),
+              ),
             ),
           );
         });

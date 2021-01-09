@@ -8,9 +8,9 @@ class CardCredit {
 
   CardCredit.fromJson(Map json) {
     id = json["id"];
-    name = json["name"];
+    name = json["name"].toString().toUpperCase();
     card_number = maskCardNumber(json["card_number"]);
-    expiration_date_month = json["expiration_date_month"];
+    expiration_date_month = maskExpDateMonth(json["expiration_date_month"]);
     expiration_date_year = json["expiration_date_year"];
     cvc = json["cvc"];
   }
@@ -24,5 +24,13 @@ class CardCredit {
         " " +
         o.substring(12, 16);
     return maskedNumer;
+  }
+
+  String maskExpDateMonth(String expDateMonth) {
+    if (expDateMonth.length == 1) {
+      return "0" + expDateMonth;
+    } else {
+      return expDateMonth;
+    }
   }
 }

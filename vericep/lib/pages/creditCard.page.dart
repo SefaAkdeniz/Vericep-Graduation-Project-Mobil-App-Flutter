@@ -40,7 +40,7 @@ class _CreditCardPageState extends State<CreditCardPage> {
                   "/" +
                   this.creditCards[position].expiration_date_year,
               cardHolderName: this.creditCards[position].name,
-              bankName: "Axis Bank",
+              bankName: "Credit Card",
               showBackSide: false,
               frontBackground: CardBackgrounds.black,
               backBackground: CardBackgrounds.white,
