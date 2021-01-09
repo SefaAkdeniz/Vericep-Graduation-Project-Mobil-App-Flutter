@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:vericep/models/user.dart';
 import 'package:vericep/pages/creditCard.page.dart';
 import 'package:vericep/pages/ml.page.dart';
+import 'package:vericep/pages/updateAccount.page.dart';
+import 'package:vericep/widgets/loginWidgets/textLogin.dart';
 
 class MainPage extends StatefulWidget {
   User currentUser;
@@ -17,17 +19,21 @@ class _MainPageState extends State<MainPage> {
   Widget currentPage = MLPage();
   var currentColor = Colors.blueAccent;
   Widget currentAddButton;
+  String currentTitle = "ML Modelleri";
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
+          centerTitle: true,
+          toolbarHeight: 40,
           backgroundColor: Colors.white,
           leading: Padding(
             padding: const EdgeInsets.only(left: 10),
             child: Image(image: AssetImage('assets/logo.png')),
           ),
+          title: Text(currentTitle, style: TextStyle(color: Colors.black)),
         ),
         bottomNavigationBar: CurvedNavigationBar(
           backgroundColor: currentColor,
@@ -51,12 +57,19 @@ class _MainPageState extends State<MainPage> {
                     child: Icon(Icons.add),
                     tooltip: "Yeni kart ekle.",
                   );
+                  currentTitle = "Kayıtlı Kartlarım";
                   break;
                 case 1:
                   currentPage = MLPage();
                   currentColor = Colors.blueAccent;
                   currentAddButton = null;
+                  currentTitle = "ML Modelleri";
                   break;
+                case 3:
+                  currentPage = UpdateAccountPage();
+                  currentColor = Colors.amberAccent;
+                  currentAddButton = null;
+                  currentTitle = "Hesabım";
               }
             });
           },

@@ -33,17 +33,22 @@ class _CreditCardPageState extends State<CreditCardPage> {
         itemCount: cardCounts,
         itemBuilder: (BuildContext context, int position) {
           return Padding(
-            padding: const EdgeInsets.only(bottom: 8.0),
-            child: CreditCard(
-              cardNumber: this.creditCards[position].card_number,
-              cardExpiry: this.creditCards[position].expiration_date_month +
-                  "/" +
-                  this.creditCards[position].expiration_date_year,
-              cardHolderName: this.creditCards[position].name,
-              bankName: "Credit Card",
-              showBackSide: false,
-              frontBackground: CardBackgrounds.black,
-              backBackground: CardBackgrounds.white,
+            padding: const EdgeInsets.only(top: 8.0),
+            child: GestureDetector(
+              onTap: () {
+                print("click");
+              },
+              child: CreditCard(
+                cardNumber: this.creditCards[position].card_number,
+                cardExpiry: this.creditCards[position].expiration_date_month +
+                    "/" +
+                    this.creditCards[position].expiration_date_year,
+                cardHolderName: this.creditCards[position].name,
+                bankName: "Credit Card",
+                showBackSide: false,
+                frontBackground: CardBackgrounds.black,
+                backBackground: CardBackgrounds.white,
+              ),
             ),
           );
         });
