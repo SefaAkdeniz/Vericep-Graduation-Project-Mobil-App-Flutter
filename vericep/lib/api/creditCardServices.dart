@@ -14,9 +14,9 @@ class CreditCardServices {
       }),
     );
     var json = jsonDecode(response.body);
-    List<CreditCard> listCreditCard = List<CreditCard>();
+    List<CardCredit> listCreditCard = List<CardCredit>();
     for (int i = 0; i < json["cardCount"]; i++) {
-      listCreditCard.add(CreditCard.fromJson(json["cards"][i]));
+      listCreditCard.add(CardCredit.fromJson(json["cards"][i]));
     }
     print(listCreditCard.length);
     if (response.statusCode == 200) {
