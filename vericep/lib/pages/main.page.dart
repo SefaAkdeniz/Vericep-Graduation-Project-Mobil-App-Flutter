@@ -1,6 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:vericep/models/user.dart';
+import 'package:vericep/pages/ml.page.dart';
 
 class MainPage extends StatefulWidget {
   User currentUser;
@@ -39,7 +40,7 @@ class _MainPageState extends State<MainPage> {
           color: Colors.blueAccent,
           child: Padding(
             padding: const EdgeInsets.only(bottom: 20.0),
-            child: currentPage,
+            child: MLPage(),
           ),
         ),
       ),
