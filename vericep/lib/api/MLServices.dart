@@ -10,16 +10,16 @@ class MLServices {
       'Content-Type': 'application/json; charset=UTF-8',
     });
     var json = jsonDecode(response.body);
-    List<ML> allML = List<ML>();
+    List<ML> listML = List<ML>();
     for (int i = 0; i < json["modelCount"]; i++) {
       ML currentMl = ML.fromJson(json["models"][i]);
       for (int j = 0; j < json["models"][i]["inputCount"]; j++) {
         currentMl.inputs.add(MLInput.fromJson(json["models"][i]["inputs"][j]));
       }
-      allML.add(currentMl);
+      listML.add(currentMl);
     }
     if (response.statusCode == 200) {
-      return allML;
+      return listML;
     } else {
       throw Exception('Failed request.');
     }
