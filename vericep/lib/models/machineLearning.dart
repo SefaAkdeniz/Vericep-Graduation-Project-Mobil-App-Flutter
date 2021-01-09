@@ -6,7 +6,7 @@ class ML {
   String url;
   String description;
   int inputCount;
-  List<MLInput> inputs;
+  List<MLInput> inputs = List<MLInput>();
 
   ML(this.id, this.name, this.url, this.description, this.inputCount,
       this.inputs);
