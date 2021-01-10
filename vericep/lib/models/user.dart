@@ -29,11 +29,19 @@ class User {
 
   Map toJsonRegister() {
     return {
-      "username": username,
-      "first_name": first_name,
-      "last_name": last_name,
-      "email": email,
-      "password": password
+      "username": isNullCheck(username),
+      "first_name": isNullCheck(first_name),
+      "last_name": isNullCheck(last_name),
+      "email": isNullCheck(email),
+      "password": isNullCheck(password)
     };
+  }
+
+  String isNullCheck(String value) {
+    if (value.length < 1) {
+      return " ";
+    } else {
+      return value;
+    }
   }
 }
