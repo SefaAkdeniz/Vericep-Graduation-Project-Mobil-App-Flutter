@@ -30,27 +30,39 @@ class _CreditCardPageState extends State<CreditCardPage> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount: cardCounts,
+        itemCount: cardCounts + 1,
         itemBuilder: (BuildContext context, int position) {
-          return Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: GestureDetector(
-              onTap: () {
-                print("click");
-              },
-              child: CreditCard(
-                cardNumber: this.creditCards[position].card_number,
-                cardExpiry: this.creditCards[position].expiration_date_month +
-                    "/" +
-                    this.creditCards[position].expiration_date_year,
-                cardHolderName: this.creditCards[position].name,
-                bankName: "Credit Card",
-                showBackSide: false,
-                frontBackground: CardBackgrounds.black,
-                backBackground: CardBackgrounds.white,
+          if (position == 0) {
+            return Padding(
+              padding: const EdgeInsets.only(top:8.0,left:20.0,right:20.0),
+              child: Card(
+                  child: Center(child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text("Kullanılabilir Bakiye:" + "  110.00 TL"),
+                  ))),
+            );
+          } else {
+            return Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: GestureDetector(
+                onTap: () {
+                  print("click");
+                },
+                child: CreditCard(
+                  cardNumber: this.creditCards[position - 1].card_number,
+                  cardExpiry:
+                      this.creditCards[position - 1].expiration_date_month +
+                          "/" +
+                          this.creditCards[position - 1].expiration_date_year,
+                  cardHolderName: this.creditCards[position - 1].name,
+                  bankName: "Credit Card",
+                  showBackSide: false,
+                  frontBackground: CardBackgrounds.black,
+                  backBackground: CardBackgrounds.white,
+                ),
               ),
-            ),
-          );
+            );
+          }
         });
   }
 }
