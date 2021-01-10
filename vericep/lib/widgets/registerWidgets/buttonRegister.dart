@@ -4,6 +4,8 @@ import 'package:vericep/models/response.dart';
 import 'package:vericep/models/user.dart';
 import 'package:vericep/pages/login.page.dart';
 
+import '../alert.dart';
+
 class ButtonRegister extends StatefulWidget {
   final TextEditingController txtUsername;
   final TextEditingController txtPassword;
@@ -18,6 +20,7 @@ class ButtonRegister extends StatefulWidget {
 }
 
 class _ButtonRegisterState extends State<ButtonRegister> {
+  var alerts = Alerts();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -75,9 +78,11 @@ class _ButtonRegisterState extends State<ButtonRegister> {
       if (value.result == 1) {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => LoginPage()));
-        _showDialog("Hoşgeldin.", value.message);
+        alerts.showAlertWithImage(
+            context, "Hoşgeldin", value.message, "assets/success.png");
       } else {
-        _showDialog("Maalesef işlem başarısız.", value.message);
+        alerts.showAlertWithImage(context, "Maalesef işlem başarısız",
+            value.message, "assets/error.png");
       }
     });
   }

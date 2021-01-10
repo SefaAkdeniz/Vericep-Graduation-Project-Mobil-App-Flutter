@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:vericep/api/userServices.dart';
 import 'package:vericep/models/user.dart';
 import 'package:vericep/pages/main.page.dart';
+import 'package:vericep/widgets/alert.dart';
 
 class ButtonLogin extends StatefulWidget {
   TextEditingController txtUsername;
@@ -13,6 +14,7 @@ class ButtonLogin extends StatefulWidget {
 }
 
 class _ButtonLoginState extends State<ButtonLogin> {
+  var alerts = Alerts();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -74,43 +76,25 @@ class _ButtonLoginState extends State<ButtonLogin> {
               context,
               MaterialPageRoute(
                   builder: (context) => new MainPage(currentUser)));
-          _showDialog("Tebrikler.", "Giriş Yapıldı.");
+          alerts.showAlertWithImage(
+              context, "Tebrikler", "Giriş Yapıldı", "assets/success.png");
+          //_showDialog("Tebrikler.", "Giriş Yapıldı.");
         } else {
-          _showDialog("Maalesef işlem başarısız.",
-              "Sisteme kayıtlı kullanıcı bulunamadı.");
+          alerts.showAlertWithImage(context, "Maalesef işlem başarısız",
+              "Sisteme kayıtlı kullanıcı bulunamadı", "assets/error.png");
         }
       });
     }
   }
 
-  void _showDialog(title, message) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: new Text(title),
-          content: new Text(message),
-          actions: <Widget>[
-            new FlatButton(
-              child: new Text("Close"),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
-
   bool isFormValid() {
     if (widget.txtUsername.text.length < 3) {
-      _showDialog("Maalesef işlem başarısız.",
-          "Kullanıcı adı 3 karakterden kısa olamaz.");
+      alerts.showAlertWithImage(context, "Maalesef işlem başarısız.",
+          "Kullanıcı adı 3 karakterden kısa olamaz.", "assets/error.png");
       return false;
     } else if (widget.txtPassword.text.length < 8) {
-      _showDialog(
-          "Maalesef işlem başarısız.", "Şifre 8 karakterden kısa olamaz.");
+      alerts.showAlertWithImage(context, "Maalesef işlem başarısız.",
+          "Şifre 8 karakterden kısa olamaz.", "assets/error.png");
       return false;
     } else {
       return true;

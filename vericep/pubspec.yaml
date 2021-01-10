@@ -26,6 +26,7 @@ dependencies:
   http:
   curved_navigation_bar:
   awesome_card:
+  rflutter_alert:
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -43,6 +44,8 @@ dev_dependencies:
 flutter:
   assets:
     - assets/logo.png
+    - assets/success.png
+    - assets/error.png
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

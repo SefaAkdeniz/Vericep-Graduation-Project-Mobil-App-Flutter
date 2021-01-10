@@ -33,6 +33,7 @@ class _MainPageState extends State<MainPage> {
             padding: const EdgeInsets.only(left: 10),
             child: Image(image: AssetImage('assets/logo.png')),
           ),
+          actions: [IconButton(icon: Icon(Icons.exit_to_app))],
           title: Text(currentTitle, style: TextStyle(color: Colors.black)),
         ),
         bottomNavigationBar: CurvedNavigationBar(
