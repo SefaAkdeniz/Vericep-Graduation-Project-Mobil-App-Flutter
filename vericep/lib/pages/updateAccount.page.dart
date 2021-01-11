@@ -40,21 +40,8 @@ class _UpdateAccountPageState extends State<UpdateAccountPage> {
         DateTime dateTime = DateTime.parse(currentUser.date_joined);
         createDateLabel = Text(
             "Hesap Oluşturulma tarihi: " +
-                formatDate(dateTime, [
-                  yyyy,
-                  '/',
-                  mm,
-                  '/',
-                  dd,
-                  ' ',
-                  hh,
-                  ':',
-                  nn,
-                  ':',
-                  ss,
-                  ' ',
-                  am
-                ]),
+                formatDate(dateTime,
+                    [dd, '/', mm, '/', yyyy, ' ', HH, ':', nn, ':', ss]),
             style: TextStyle(
               fontSize: 12,
               color: Colors.grey,

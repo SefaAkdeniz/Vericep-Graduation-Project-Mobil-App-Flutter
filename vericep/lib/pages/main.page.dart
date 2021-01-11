@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:vericep/models/user.dart';
 import 'package:vericep/pages/creditCard.page.dart';
 import 'package:vericep/pages/historyPayment.page.dart';
+import 'package:vericep/pages/login.page.dart';
 import 'package:vericep/pages/ml.page.dart';
 import 'package:vericep/pages/updateAccount.page.dart';
 import 'package:vericep/widgets/loginWidgets/textLogin.dart';
@@ -63,13 +64,16 @@ class _MainPageState extends State<MainPage> {
                   );
                   currentTitle = "Kayıtlı Kartlarım";
                   appBarButton = IconButton(
-                    icon: Icon(Icons.history),
+                    icon: Icon(
+                      Icons.history,
+                      color: Colors.black,
+                    ),
                     onPressed: () {
-                      currentPage = HistoryPaymentPage();
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => HistoryPaymentPage()));
+                              builder: (context) =>
+                                  HistoryPaymentPage(widget.currentUser.id)));
                     },
                   );
                   break;
@@ -86,7 +90,17 @@ class _MainPageState extends State<MainPage> {
                   currentColor = Colors.amberAccent;
                   currentAddButton = null;
                   currentTitle = "Hesabım";
-                  appBarButton = IconButton(icon: Icon(Icons.exit_to_app));
+                  appBarButton = IconButton(
+                      icon: Icon(
+                        Icons.exit_to_app,
+                        color: Colors.black,
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => LoginPage()));
+                      });
               }
             });
           },
