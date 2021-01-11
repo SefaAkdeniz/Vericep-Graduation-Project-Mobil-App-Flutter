@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vericep/api/balanceServices.dart';
 import 'package:vericep/api/creditCardServices.dart';
 import 'package:vericep/models/creditCard.dart';
 import 'package:awesome_card/awesome_card.dart';
@@ -13,8 +14,11 @@ class CreditCardPage extends StatefulWidget {
 
 class _CreditCardPageState extends State<CreditCardPage> {
   var creditCardService = CreditCardServices();
+  var balanceServices = BalanceServices();
   List<CardCredit> creditCards;
   int cardCounts = 0;
+  Text txtAmaount = Text("");
+  String amaount;
 
   @override
   void initState() {
@@ -23,6 +27,12 @@ class _CreditCardPageState extends State<CreditCardPage> {
       setState(() {
         this.creditCards = value;
         this.cardCounts = value.length;
+      });
+    });
+    var amaountFuture = balanceServices.getBalance(widget.currentUserId);
+    amaountFuture.then((value) {
+      setState(() {
+        txtAmaount = Text("Kullanılabilir Bakiye: " + value + " TL");
       });
     });
   }
@@ -34,12 +44,13 @@ class _CreditCardPageState extends State<CreditCardPage> {
         itemBuilder: (BuildContext context, int position) {
           if (position == 0) {
             return Padding(
-              padding: const EdgeInsets.only(top:8.0,left:20.0,right:20.0),
+              padding: const EdgeInsets.only(top: 8.0, left: 20.0, right: 20.0),
               child: Card(
-                  child: Center(child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text("Kullanılabilir Bakiye:" + "  110.00 TL"),
-                  ))),
+                  child: Center(
+                      child: Padding(
+                child: txtAmaount,
+                padding: const EdgeInsets.all(8.0),
+              ))),
             );
           } else {
             return Padding(
