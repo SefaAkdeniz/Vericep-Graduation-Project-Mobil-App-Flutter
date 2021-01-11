@@ -2,6 +2,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:vericep/models/user.dart';
 import 'package:vericep/pages/creditCard.page.dart';
+import 'package:vericep/pages/historyPayment.page.dart';
 import 'package:vericep/pages/ml.page.dart';
 import 'package:vericep/pages/updateAccount.page.dart';
 import 'package:vericep/widgets/loginWidgets/textLogin.dart';
@@ -20,6 +21,7 @@ class _MainPageState extends State<MainPage> {
   Widget currentPage = MLPage();
   var currentColor = Colors.blueAccent;
   Widget currentAddButton;
+  Widget appBarButton = IconButton(icon: Icon(Icons.info));
   String currentTitle = "ML Modelleri";
 
   @override
@@ -34,7 +36,7 @@ class _MainPageState extends State<MainPage> {
             padding: const EdgeInsets.only(left: 10),
             child: Image(image: AssetImage('assets/logo.png')),
           ),
-          actions: [IconButton(icon: Icon(Icons.exit_to_app))],
+          actions: [appBarButton],
           title: Text(currentTitle, style: TextStyle(color: Colors.black)),
         ),
         bottomNavigationBar: CurvedNavigationBar(
@@ -60,12 +62,23 @@ class _MainPageState extends State<MainPage> {
                     tooltip: "Yeni kart ekle.",
                   );
                   currentTitle = "Kayıtlı Kartlarım";
+                  appBarButton = IconButton(
+                    icon: Icon(Icons.history),
+                    onPressed: () {
+                      currentPage = HistoryPaymentPage();
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => HistoryPaymentPage()));
+                    },
+                  );
                   break;
                 case 1:
                   currentPage = MLPage();
                   currentColor = Colors.blueAccent;
                   currentAddButton = null;
                   currentTitle = "ML Modelleri";
+                  appBarButton = IconButton(icon: Icon(Icons.info));
                   break;
                 case 3:
                   currentPage =
@@ -73,6 +86,7 @@ class _MainPageState extends State<MainPage> {
                   currentColor = Colors.amberAccent;
                   currentAddButton = null;
                   currentTitle = "Hesabım";
+                  appBarButton = IconButton(icon: Icon(Icons.exit_to_app));
               }
             });
           },

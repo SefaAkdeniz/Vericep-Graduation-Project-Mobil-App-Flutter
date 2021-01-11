@@ -18,7 +18,6 @@ class CreditCardServices {
     for (int i = 0; i < json["cardCount"]; i++) {
       listCreditCard.add(CardCredit.fromJson(json["cards"][i]));
     }
-    print(listCreditCard.length);
     if (response.statusCode == 200) {
       return listCreditCard;
     } else {
