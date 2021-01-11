@@ -37,4 +37,44 @@ class UserServices {
       throw Exception('Failed login.');
     }
   }
+
+  static Future<Response> updateAccount(Map body) async {
+    print(body);
+    final http.Response response =
+        await http.post('http://10.0.2.2:8000/user/updateAccount/',
+            headers: <String, String>{
+              'Content-Type': 'application/json; charset=UTF-8',
+            },
+            body: jsonEncode(body));
+    if (response.statusCode == 200) {
+      return Response.fromJson(jsonDecode(response.body));
+    } else {
+      throw Exception('Failed update.');
+    }
+  }
+
+  Future<User> getAccountInfo(String id) async {
+    final http.Response response = await http.post(
+      'http://10.0.2.2:8000/user/getAccountInfo/',
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'user_id': id,
+      }),
+    );
+    var json = jsonDecode(response.body);
+
+    if (response.statusCode == 200) {
+      if (json["result"] == 1) {
+        var user = User.fromJson(json["userInfo"]);
+        user.username = json["userInfo"]["username"];
+        return user;
+      } else {
+        throw Exception(json["Sisteme kayıtlı kullanıcı bulunamadı."]);
+      }
+    } else {
+      throw Exception('Failed request.');
+    }
+  }
 }

@@ -8,8 +8,9 @@ import 'package:vericep/widgets/loginWidgets/textLogin.dart';
 
 class MainPage extends StatefulWidget {
   User currentUser;
+  String password;
 
-  MainPage(this.currentUser);
+  MainPage(this.currentUser, this.password);
 
   @override
   _MainPageState createState() => _MainPageState();
@@ -67,7 +68,8 @@ class _MainPageState extends State<MainPage> {
                   currentTitle = "ML Modelleri";
                   break;
                 case 3:
-                  currentPage = UpdateAccountPage();
+                  currentPage =
+                      UpdateAccountPage(widget.currentUser.id, widget.password);
                   currentColor = Colors.amberAccent;
                   currentAddButton = null;
                   currentTitle = "Hesabım";

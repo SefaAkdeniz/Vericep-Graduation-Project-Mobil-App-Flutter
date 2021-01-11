@@ -75,7 +75,8 @@ class _ButtonLoginState extends State<ButtonLogin> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => new MainPage(currentUser)));
+                  builder: (context) =>
+                      new MainPage(currentUser, widget.txtPassword.text)));
           alerts.showAlertWithImage(
               context, "Tebrikler", "Giriş Yapıldı", "assets/success.png");
           //_showDialog("Tebrikler.", "Giriş Yapıldı.");

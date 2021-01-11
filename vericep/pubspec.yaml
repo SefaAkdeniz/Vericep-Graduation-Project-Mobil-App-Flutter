@@ -27,6 +27,7 @@ dependencies:
   curved_navigation_bar:
   awesome_card:
   rflutter_alert:
+  date_format:
 
 
   # The following adds the Cupertino Icons font to your application.

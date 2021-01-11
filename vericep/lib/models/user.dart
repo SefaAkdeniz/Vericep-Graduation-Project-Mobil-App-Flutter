@@ -14,6 +14,8 @@ class User {
   User.forUpdateAccount(this.id, this.username, this.first_name, this.last_name,
       this.email, this.password);
 
+  User();
+
   User.fromJson(Map json) {
     id = json["id"];
     first_name = json["first_name"];
@@ -29,6 +31,17 @@ class User {
 
   Map toJsonRegister() {
     return {
+      "username": isNullCheck(username),
+      "first_name": isNullCheck(first_name),
+      "last_name": isNullCheck(last_name),
+      "email": isNullCheck(email),
+      "password": isNullCheck(password)
+    };
+  }
+
+  Map toJsonUpdate() {
+    return {
+      "user_id": id.toString(),
       "username": isNullCheck(username),
       "first_name": isNullCheck(first_name),
       "last_name": isNullCheck(last_name),
