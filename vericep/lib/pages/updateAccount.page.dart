@@ -106,6 +106,7 @@ class _UpdateAccountPageState extends State<UpdateAccountPage> {
       Padding(
         padding: const EdgeInsets.only(left: 30.0, right: 30.0),
         child: TextField(
+          obscureText: true,
           controller: txtOldPassword,
           decoration: InputDecoration(labelText: "Eski Şifre"),
         ),
@@ -113,6 +114,7 @@ class _UpdateAccountPageState extends State<UpdateAccountPage> {
       Padding(
         padding: const EdgeInsets.only(left: 30.0, right: 30.0),
         child: TextField(
+          obscureText: true,
           controller: txtNewPassword,
           decoration: InputDecoration(labelText: "Yeni Şifre"),
         ),

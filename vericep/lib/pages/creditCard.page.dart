@@ -3,6 +3,7 @@ import 'package:vericep/api/balanceServices.dart';
 import 'package:vericep/api/creditCardServices.dart';
 import 'package:vericep/models/creditCard.dart';
 import 'package:awesome_card/awesome_card.dart';
+import 'package:vericep/pages/cardOperations.page.dart';
 
 class CreditCardPage extends StatefulWidget {
   String currentUserId;
@@ -57,7 +58,10 @@ class _CreditCardPageState extends State<CreditCardPage> {
               padding: const EdgeInsets.only(top: 8.0),
               child: GestureDetector(
                 onTap: () {
-                  print("click");
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => CardOperationsPage(this.creditCards[position - 1])));
                 },
                 child: CreditCard(
                   cardNumber: this.creditCards[position - 1].card_number,
