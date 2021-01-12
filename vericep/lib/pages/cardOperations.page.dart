@@ -1,17 +1,22 @@
 import 'package:awesome_card/credit_card.dart';
 import 'package:awesome_card/style/card_background.dart';
 import 'package:flutter/material.dart';
+import 'package:vericep/api/paymentServices.dart';
 import 'package:vericep/models/creditCard.dart';
 
 class CardOperationsPage extends StatefulWidget {
   CardCredit currentCard;
-  CardOperationsPage(this.currentCard);
+  String currentUserId;
+  CardOperationsPage(this.currentCard, this.currentUserId);
 
   @override
   _CardOperationsPageState createState() => _CardOperationsPageState();
 }
 
 class _CardOperationsPageState extends State<CardOperationsPage> {
+  final TextEditingController txtAmaount = TextEditingController();
+  final TextEditingController txtCVC = TextEditingController();
+  var paymentService = PaymentServices();
   bool showBackSide = false;
   @override
   Widget build(BuildContext context) {
@@ -20,7 +25,7 @@ class _CardOperationsPageState extends State<CardOperationsPage> {
         appBar: AppBar(
           leading: IconButton(
             icon: Icon(Icons.arrow_back, color: Colors.black),
-            onPressed: () => Navigator.of(context).pop(),
+            onPressed: () => Navigator.of(context).pop(true),
           ),
           centerTitle: true,
           toolbarHeight: 40,
@@ -67,6 +72,7 @@ class _CardOperationsPageState extends State<CardOperationsPage> {
                                 });
                               }
                             },
+                            controller: txtCVC,
                             maxLength: 3,
                             style: TextStyle(color: Colors.white),
                             keyboardType: TextInputType.number,
@@ -78,6 +84,7 @@ class _CardOperationsPageState extends State<CardOperationsPage> {
                                 labelStyle: TextStyle(color: Colors.white)),
                           ),
                           subtitle: TextField(
+                            controller: txtAmaount,
                             style: TextStyle(color: Colors.white),
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
@@ -94,7 +101,24 @@ class _CardOperationsPageState extends State<CardOperationsPage> {
                             child: const Text('Bakiye Yükle'),
                             color: Colors.orangeAccent,
                             splashColor: Colors.redAccent,
-                            onPressed: () {},
+                            onPressed: () {
+                              print("sada");
+
+                              PaymentServices.doPayment(
+                                      widget.currentUserId,
+                                      txtAmaount.text,
+                                      widget.currentCard.id,
+                                      txtCVC.text)
+                                  .then((value) {
+                                print("sadas");
+                                print(value.result.toString());
+                                if (value.result == 1) {
+                                  print(value.message.toString());
+                                } else {
+                                  print(value.message.toString());
+                                }
+                              });
+                            },
                           ),
                         ),
                       ],

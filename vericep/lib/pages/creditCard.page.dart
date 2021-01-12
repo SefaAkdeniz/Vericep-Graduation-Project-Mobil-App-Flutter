@@ -23,19 +23,8 @@ class _CreditCardPageState extends State<CreditCardPage> {
 
   @override
   void initState() {
-    var cardsFuture = creditCardService.getListCard(widget.currentUserId);
-    cardsFuture.then((value) {
-      setState(() {
-        this.creditCards = value;
-        this.cardCounts = value.length;
-      });
-    });
-    var amaountFuture = balanceServices.getBalance(widget.currentUserId);
-    amaountFuture.then((value) {
-      setState(() {
-        txtAmaount = Text("Kullanılabilir Bakiye: " + value + " TL");
-      });
-    });
+    getCard();
+    getBalance();
   }
 
   @override
@@ -57,12 +46,18 @@ class _CreditCardPageState extends State<CreditCardPage> {
             return Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: GestureDetector(
-                onTap: () {
-                  Navigator.push(
+                onTap: () async {
+                  final boole = await Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => CardOperationsPage(
-                              this.creditCards[position - 1])));
+                              this.creditCards[position - 1],
+                              widget.currentUserId)));
+                  if (boole) {
+                    getCard();
+                    getBalance();
+                  }
+                  ;
                 },
                 child: CreditCard(
                   cardNumber: this.creditCards[position - 1].card_number,
@@ -80,5 +75,24 @@ class _CreditCardPageState extends State<CreditCardPage> {
             );
           }
         });
+  }
+
+  getCard() {
+    var cardsFuture = creditCardService.getListCard(widget.currentUserId);
+    cardsFuture.then((value) {
+      setState(() {
+        this.creditCards = value;
+        this.cardCounts = value.length;
+      });
+    });
+  }
+
+  void getBalance() {
+    var amaountFuture = balanceServices.getBalance(widget.currentUserId);
+    amaountFuture.then((value) {
+      setState(() {
+        txtAmaount = Text("Kullanılabilir Bakiye: " + value + " TL");
+      });
+    });
   }
 }
