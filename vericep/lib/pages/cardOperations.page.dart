@@ -1,6 +1,7 @@
 import 'package:awesome_card/credit_card.dart';
 import 'package:awesome_card/style/card_background.dart';
 import 'package:flutter/material.dart';
+import 'package:vericep/api/creditCardServices.dart';
 import 'package:vericep/api/paymentServices.dart';
 import 'package:vericep/models/creditCard.dart';
 
@@ -137,7 +138,20 @@ class _CardOperationsPageState extends State<CardOperationsPage> {
                     child: const Text('Kayıtlı kartlardan kaldır'),
                     color: Colors.red,
                     splashColor: Colors.redAccent,
-                    onPressed: () {},
+                    onPressed: () {
+                      CreditCardServices.deleteCard(
+                              widget.currentCard.id.toString())
+                          .then((value) {
+                        print(value.result.toString());
+                        if (value.result == 1) {
+                          Navigator.of(context).pop(true);
+                          _showDialog("Tebrikler", value.message, context);
+                          print(value.message.toString());
+                        } else {
+                          _showDialog("Maalesef", value.message, context);
+                        }
+                      });
+                    },
                   ),
                 )
               ],

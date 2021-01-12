@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:vericep/models/creditCard.dart';
+import 'package:vericep/models/response.dart';
 
 class CreditCardServices {
   Future getListCard(String id) async {
@@ -20,6 +21,23 @@ class CreditCardServices {
     }
     if (response.statusCode == 200) {
       return listCreditCard;
+    } else {
+      throw Exception('Failed request.');
+    }
+  }
+
+  static deleteCard(String id) async {
+    final http.Response response = await http.post(
+      'http://10.0.2.2:8000/payment/deleteCard/',
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'card_id': id,
+      }),
+    );
+    if (response.statusCode == 200) {
+      return Response.fromJson(jsonDecode(response.body));
     } else {
       throw Exception('Failed request.');
     }
