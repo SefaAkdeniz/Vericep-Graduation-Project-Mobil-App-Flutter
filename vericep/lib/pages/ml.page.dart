@@ -29,7 +29,7 @@ class _MLPageState extends State<MLPage> {
         itemCount: mlCount,
         itemBuilder: (BuildContext context, int position) {
           return Padding(
-            padding: const EdgeInsets.only(left:8.0,right: 8.0),
+            padding: const EdgeInsets.only(left: 8.0, right: 8.0),
             child: Card(
               color: Colors.white,
               child: ListTile(

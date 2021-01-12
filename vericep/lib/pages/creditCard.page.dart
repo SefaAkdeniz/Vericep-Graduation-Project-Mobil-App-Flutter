@@ -61,7 +61,8 @@ class _CreditCardPageState extends State<CreditCardPage> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => CardOperationsPage(this.creditCards[position - 1])));
+                          builder: (context) => CardOperationsPage(
+                              this.creditCards[position - 1])));
                 },
                 child: CreditCard(
                   cardNumber: this.creditCards[position - 1].card_number,

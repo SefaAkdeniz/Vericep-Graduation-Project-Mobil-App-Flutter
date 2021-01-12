@@ -12,6 +12,7 @@ class CardOperationsPage extends StatefulWidget {
 }
 
 class _CardOperationsPageState extends State<CardOperationsPage> {
+  bool showBackSide = false;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -27,7 +28,7 @@ class _CardOperationsPageState extends State<CardOperationsPage> {
           title: Text("İşlem Yap", style: TextStyle(color: Colors.black)),
         ),
         body: Container(
-            color: Colors.blueAccent,
+            color: Colors.orangeAccent,
             child: ListView(
               children: [
                 Padding(
@@ -39,39 +40,75 @@ class _CardOperationsPageState extends State<CardOperationsPage> {
                         widget.currentCard.expiration_date_year,
                     cardHolderName: widget.currentCard.name,
                     bankName: "Credit Card",
-                    showBackSide: false,
+                    showBackSide: showBackSide,
                     frontBackground: CardBackgrounds.black,
                     backBackground: CardBackgrounds.white,
-                    cvv: "854",
+                    cvv: widget.currentCard.cvc,
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(right: 15.0, left: 15.0),
-                  child: TextField(
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.white),
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                        labelText: "Onay CVC",
-                        labelStyle: TextStyle(color: Colors.white)),
+                  padding: const EdgeInsets.all(15.0),
+                  child: Card(
+                    color: Colors.black,
+                    child: Column(
+                      children: [
+                        ListTile(
+                          title: TextField(
+                            onChanged: (value) {
+                              if (value.length == 3) {
+                                if (value == widget.currentCard.cvc) {
+                                  setState(() {
+                                    showBackSide = true;
+                                  });
+                                }
+                              } else {
+                                setState(() {
+                                  showBackSide = false;
+                                });
+                              }
+                            },
+                            maxLength: 3,
+                            style: TextStyle(color: Colors.white),
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                                enabledBorder: UnderlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.white)),
+                                labelText: "Onay CVC",
+                                labelStyle: TextStyle(color: Colors.white)),
+                          ),
+                          subtitle: TextField(
+                            style: TextStyle(color: Colors.white),
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                                enabledBorder: UnderlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.white)),
+                                labelText: "Miktar",
+                                labelStyle: TextStyle(color: Colors.white)),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: RaisedButton(
+                            child: const Text('Bakiye Yükle'),
+                            color: Colors.orangeAccent,
+                            splashColor: Colors.redAccent,
+                            onPressed: () {},
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 15.0, left: 15.0),
-                  child: TextField(
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.white),
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                        labelText: "Miktar",
-                        labelStyle: TextStyle(color: Colors.white)),
-                  ),
+                SizedBox(
+                  height: 30,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(right: 15.0, left: 15.0),
                   child: RaisedButton(
-                    child: const Text('Bakiye Yükle'),
-                    color: Colors.white,
+                    child: const Text('Kayıtlı kartlardan kaldır'),
+                    color: Colors.red,
                     splashColor: Colors.redAccent,
                     onPressed: () {},
                   ),
