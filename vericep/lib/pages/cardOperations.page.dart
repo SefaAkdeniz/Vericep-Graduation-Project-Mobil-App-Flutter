@@ -102,22 +102,25 @@ class _CardOperationsPageState extends State<CardOperationsPage> {
                             color: Colors.orangeAccent,
                             splashColor: Colors.redAccent,
                             onPressed: () {
-                              print("sada");
-
-                              PaymentServices.doPayment(
-                                      widget.currentUserId,
-                                      txtAmaount.text,
-                                      widget.currentCard.id,
-                                      txtCVC.text)
-                                  .then((value) {
-                                print("sadas");
-                                print(value.result.toString());
-                                if (value.result == 1) {
-                                  print(value.message.toString());
-                                } else {
-                                  print(value.message.toString());
-                                }
-                              });
+                              if (validForm()) {
+                                PaymentServices.doPayment(
+                                        widget.currentUserId,
+                                        txtAmaount.text,
+                                        widget.currentCard.id,
+                                        txtCVC.text)
+                                    .then((value) {
+                                  print(value.result.toString());
+                                  if (value.result == 1) {
+                                    Navigator.of(context).pop(true);
+                                    _showDialog(
+                                        "Tebrikler", value.message, context);
+                                    print(value.message.toString());
+                                  } else {
+                                    _showDialog(
+                                        "Maalesef", value.message, context);
+                                  }
+                                });
+                              }
                             },
                           ),
                         ),
@@ -141,5 +144,39 @@ class _CardOperationsPageState extends State<CardOperationsPage> {
             )),
       ),
     );
+  }
+
+  void _showDialog(title, content, BuildContext context) {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text(title),
+          content: new Text(content),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Kapat"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  bool validForm() {
+    if (txtAmaount.text == "") {
+      _showDialog("Maalesef", "Lütfen miktar giriniz.", context);
+      return false;
+    } else if (txtCVC.text == "") {
+      _showDialog("Maalesef", "Lütfen CVC kodunu giriniz.", context);
+      return false;
+    }
+    return true;
   }
 }
