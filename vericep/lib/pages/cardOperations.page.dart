@@ -81,7 +81,7 @@ class _CardOperationsPageState extends State<CardOperationsPage> {
                                 enabledBorder: UnderlineInputBorder(
                                     borderSide:
                                         BorderSide(color: Colors.white)),
-                                labelText: "Onay CVC",
+                                labelText: "Onay CVV",
                                 labelStyle: TextStyle(color: Colors.white)),
                           ),
                           subtitle: TextField(
@@ -188,7 +188,7 @@ class _CardOperationsPageState extends State<CardOperationsPage> {
       _showDialog("Maalesef", "Lütfen miktar giriniz.", context);
       return false;
     } else if (txtCVC.text == "") {
-      _showDialog("Maalesef", "Lütfen CVC kodunu giriniz.", context);
+      _showDialog("Maalesef", "Lütfen CVV kodunu giriniz.", context);
       return false;
     }
     return true;

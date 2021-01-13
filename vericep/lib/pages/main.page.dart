@@ -8,6 +8,8 @@ import 'package:vericep/pages/ml.page.dart';
 import 'package:vericep/pages/updateAccount.page.dart';
 import 'package:vericep/widgets/loginWidgets/textLogin.dart';
 
+import 'addCard.page.dart';
+
 class MainPage extends StatefulWidget {
   User currentUser;
   String password;
@@ -57,7 +59,13 @@ class _MainPageState extends State<MainPage> {
                       CreditCardPage(widget.currentUser.id.toString());
                   currentColor = Colors.redAccent;
                   currentAddButton = FloatingActionButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  AddCardPage(widget.currentUser.id.toString())));
+                    },
                     backgroundColor: Colors.red,
                     child: Icon(Icons.add),
                     tooltip: "Yeni kart ekle.",

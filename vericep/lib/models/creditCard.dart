@@ -6,6 +6,14 @@ class CardCredit {
   String expiration_date_year;
   String cvc;
 
+  CardCredit() {
+    this.name = "AD SOYAD";
+    this.card_number = "";
+    this.expiration_date_month = "AA";
+    this.expiration_date_year = "YY";
+    this.cvc = "";
+  }
+
   CardCredit.fromJson(Map json) {
     id = json["id"];
     name = json["name"].toString().toUpperCase();
