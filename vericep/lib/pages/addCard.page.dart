@@ -1,6 +1,7 @@
 import 'package:awesome_card/credit_card.dart';
 import 'package:awesome_card/style/card_background.dart';
 import 'package:flutter/material.dart';
+import 'package:vericep/api/creditCardServices.dart';
 import 'package:vericep/models/creditCard.dart';
 
 class AddCardPage extends StatefulWidget {
@@ -12,8 +13,17 @@ class AddCardPage extends StatefulWidget {
 }
 
 class _AddCardPageState extends State<AddCardPage> {
+  final TextEditingController txtNumber = TextEditingController();
+  final TextEditingController txtName = TextEditingController();
+  final TextEditingController txtExpDate = TextEditingController();
+  final TextEditingController txtCVC = TextEditingController();
   CardCredit newCard = CardCredit();
   bool showBackSide = false;
+  @override
+  void initState() {
+    newCard.id = int.tryParse(widget.currentUserId);
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -59,6 +69,7 @@ class _AddCardPageState extends State<AddCardPage> {
                             padding:
                                 const EdgeInsets.only(left: 30.0, right: 30.0),
                             child: TextField(
+                                controller: txtNumber,
                                 onTap: () {
                                   setState(() {
                                     showBackSide = false;
@@ -78,6 +89,7 @@ class _AddCardPageState extends State<AddCardPage> {
                             padding:
                                 const EdgeInsets.only(left: 30.0, right: 30.0),
                             child: TextField(
+                                controller: txtName,
                                 onTap: () {
                                   setState(() {
                                     showBackSide = false;
@@ -95,9 +107,22 @@ class _AddCardPageState extends State<AddCardPage> {
                             padding:
                                 const EdgeInsets.only(left: 30.0, right: 30.0),
                             child: TextField(
+                                controller: txtExpDate,
                                 onTap: () {
                                   setState(() {
                                     showBackSide = false;
+                                  });
+                                },
+                                onChanged: (value) {
+                                  setState(() {
+                                    if (value.length < 3) {
+                                      newCard.expiration_date_month = value;
+                                    } else if (value.length == 4) {
+                                      newCard.expiration_date_year = value[3];
+                                    } else if (value.length == 5) {
+                                      newCard.expiration_date_year =
+                                          value.substring(3, 5);
+                                    }
                                   });
                                 },
                                 decoration: InputDecoration(
@@ -107,16 +132,16 @@ class _AddCardPageState extends State<AddCardPage> {
                             padding:
                                 const EdgeInsets.only(left: 30.0, right: 30.0),
                             child: TextField(
+                                controller: txtCVC,
                                 onTap: () {
                                   setState(() {
                                     showBackSide = true;
                                   });
                                 },
-                                onChanged: (value){
+                                onChanged: (value) {
                                   setState(() {
-                                    newCard.cvc=value;
+                                    newCard.cvc = value;
                                   });
-
                                 },
                                 keyboardType: TextInputType.number,
                                 maxLength: 3,
@@ -129,10 +154,22 @@ class _AddCardPageState extends State<AddCardPage> {
                             child: RaisedButton(
                               child: Text("Kartı Kaydet"),
                               onPressed: () {
-                                print(newCard.name);
-                                print(newCard.card_number);
-                                print(newCard.cvc);
-                                print(newCard.expiration_date_month);
+                                if (validForm()) {
+                                  CreditCardServices.addCard(
+                                          newCard.toJsonAddCard())
+                                      .then((value) {
+                                    print(value.result.toString());
+                                    if (value.result == 1) {
+                                      Navigator.of(context).pop(true);
+                                      _showDialog(
+                                          "Tebrikler", value.message, context);
+                                      print(value.message.toString());
+                                    } else {
+                                      _showDialog(
+                                          "Maalesef", value.message, context);
+                                    }
+                                  });
+                                }
                               },
                             ),
                           )
@@ -143,5 +180,45 @@ class _AddCardPageState extends State<AddCardPage> {
                 ],
               ),
             )));
+  }
+
+  void _showDialog(title, content, BuildContext context) {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text(title),
+          content: new Text(content),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Kapat"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  bool validForm() {
+    if (txtExpDate.text == "") {
+      _showDialog("Maalesef", "Lütfen son kullanma tarihini giriniz.", context);
+      return false;
+    } else if (txtCVC.text == "") {
+      _showDialog("Maalesef", "Lütfen CVV kodunu giriniz.", context);
+      return false;
+    } else if (txtNumber.text == "") {
+      _showDialog("Maalesef", "Lütfen kart numarasını giriniz.", context);
+      return false;
+    } else if (txtName.text == "") {
+      _showDialog("Maalesef", "Lütfen isim soyisim giriniz.", context);
+      return false;
+    }
+    return true;
   }
 }

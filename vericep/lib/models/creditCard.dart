@@ -31,6 +31,17 @@ class CardCredit {
     cvc = json["cvc"];
   }
 
+  Map toJsonAddCard() {
+    return {
+      "user_id": id.toString(),
+      "name": name,
+      "card_number": card_number,
+      "expiration_date_month": expiration_date_month,
+      "expiration_date_year": expiration_date_year,
+      "cvc": cvc
+    };
+  }
+
   String maskCardNumber(String o) {
     String maskedNumer = "";
     for (int i = 0; i < o.length; i++) {
