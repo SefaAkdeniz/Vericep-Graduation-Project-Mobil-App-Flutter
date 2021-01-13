@@ -42,4 +42,19 @@ class CreditCardServices {
       throw Exception('Failed request.');
     }
   }
+
+  static addCard(Map body) async {
+    final http.Response response = await http.post(
+      'http://10.0.2.2:8000/payment/addCard/',
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(body),
+    );
+    if (response.statusCode == 200) {
+      return Response.fromJson(jsonDecode(response.body));
+    } else {
+      throw Exception('Failed request.');
+    }
+  }
 }

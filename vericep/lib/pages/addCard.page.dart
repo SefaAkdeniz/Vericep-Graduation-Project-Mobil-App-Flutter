@@ -36,11 +36,11 @@ class _AddCardPageState extends State<AddCardPage> {
                   Padding(
                     padding: const EdgeInsets.only(top: 15.0),
                     child: CreditCard(
-                      cardNumber: newCard.card_number,
+                      cardNumber: newCard.maskCardNumber(newCard.card_number),
                       cardExpiry: newCard.expiration_date_month +
                           "/" +
                           newCard.expiration_date_year,
-                      cardHolderName: newCard.name,
+                      cardHolderName: newCard.name.toUpperCase(),
                       bankName: "Credit Card",
                       showBackSide: showBackSide,
                       frontBackground: CardBackgrounds.black,
@@ -112,6 +112,12 @@ class _AddCardPageState extends State<AddCardPage> {
                                     showBackSide = true;
                                   });
                                 },
+                                onChanged: (value){
+                                  setState(() {
+                                    newCard.cvc=value;
+                                  });
+
+                                },
                                 keyboardType: TextInputType.number,
                                 maxLength: 3,
                                 decoration: InputDecoration(
@@ -122,7 +128,12 @@ class _AddCardPageState extends State<AddCardPage> {
                                 const EdgeInsets.only(left: 30.0, right: 30.0),
                             child: RaisedButton(
                               child: Text("Kartı Kaydet"),
-                              onPressed: () {},
+                              onPressed: () {
+                                print(newCard.name);
+                                print(newCard.card_number);
+                                print(newCard.cvc);
+                                print(newCard.expiration_date_month);
+                              },
                             ),
                           )
                         ],
