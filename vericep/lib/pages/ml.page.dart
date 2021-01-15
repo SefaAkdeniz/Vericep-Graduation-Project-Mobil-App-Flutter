@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vericep/api/MLServices.dart';
 import 'package:vericep/models/machineLearning.dart';
+import 'package:vericep/pages/predict.page.dart';
 
 class MLPage extends StatefulWidget {
   @override
@@ -35,7 +36,13 @@ class _MLPageState extends State<MLPage> {
               child: ListTile(
                 title: Text(this.mls[position].name),
                 subtitle: Text(this.mls[position].description),
-                trailing: IconButton(icon: Icon(Icons.keyboard_arrow_right)),
+                trailing: IconButton(
+                  icon: Icon(Icons.keyboard_arrow_right),
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => PredictPage()));
+                  },
+                ),
               ),
             ),
           );
