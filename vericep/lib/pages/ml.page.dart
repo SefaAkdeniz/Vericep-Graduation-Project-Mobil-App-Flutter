@@ -39,8 +39,10 @@ class _MLPageState extends State<MLPage> {
                 trailing: IconButton(
                   icon: Icon(Icons.keyboard_arrow_right),
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => PredictPage()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => PredictPage(mls[position])));
                   },
                 ),
               ),

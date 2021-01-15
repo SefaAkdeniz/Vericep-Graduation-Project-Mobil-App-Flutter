@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:vericep/models/machineLearning.dart';
 import 'package:vericep/models/machineLearningInputs.dart';
+import 'package:vericep/models/response.dart';
 
 class MLServices {
   static Future<List<ML>> getAll() async {
@@ -20,6 +21,21 @@ class MLServices {
     }
     if (response.statusCode == 200) {
       return listML;
+    } else {
+      throw Exception('Failed request.');
+    }
+  }
+
+  static Future<Response> predict(url, body) async {
+    final http.Response response = await http.post(
+      url,
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(body),
+    );
+    if (response.statusCode == 200) {
+      return Response.fromJson(jsonDecode(response.body));
     } else {
       throw Exception('Failed request.');
     }
