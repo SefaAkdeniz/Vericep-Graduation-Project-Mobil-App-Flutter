@@ -1,6 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:vericep/models/user.dart';
+import 'package:vericep/pages/createAnalysis.page.dart';
 import 'package:vericep/pages/creditCard.page.dart';
 import 'package:vericep/pages/historyPayment.page.dart';
 import 'package:vericep/pages/login.page.dart';
@@ -63,8 +64,8 @@ class _MainPageState extends State<MainPage> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) =>
-                                  AddCardPage(widget.currentUser.id.toString())));
+                              builder: (context) => AddCardPage(
+                                  widget.currentUser.id.toString())));
                     },
                     backgroundColor: Colors.red,
                     child: Icon(Icons.add),
@@ -90,6 +91,13 @@ class _MainPageState extends State<MainPage> {
                   currentColor = Colors.blueAccent;
                   currentAddButton = null;
                   currentTitle = "ML Modelleri";
+                  appBarButton = IconButton(icon: Icon(Icons.info));
+                  break;
+                case 2:
+                  currentPage = CreateAnalysisPage();
+                  currentColor = Colors.deepPurpleAccent;
+                  currentAddButton=null;
+                  currentTitle = "Analiz Raporu Oluştur";
                   appBarButton = IconButton(icon: Icon(Icons.info));
                   break;
                 case 3:
