@@ -25,20 +25,4 @@ class BalanceServices {
       throw Exception('Failed request.');
     }
   }
-
-  static Future<Response> setBalance(user_id, process_price) async {
-    final http.Response response = await http.post(
-      'http://10.0.2.2:8000/payment/setBalance/',
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(
-          <String, String>{'user_id': user_id, 'process_price': process_price}),
-    );
-    if (response.statusCode == 200) {
-      return Response.fromJson(jsonDecode(response.body));
-    } else {
-      throw Exception('Failed request.');
-    }
-  }
 }
