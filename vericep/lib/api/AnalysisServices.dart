@@ -1,25 +1,23 @@
-import 'package:vericep/models/response.dart';
+import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:vericep/models/response.dart';
 
 class AnalysisServices {
-  static Future<Response> createAnalysis(user_id,path) async {
-    var headers = {
-      'Cookie':
-          'csrftoken=dbdRCj94IfwRwxzSypZJ0vrQV7y5Ul6NsREq0UshABHnhL72NfLByjAKY6z56SsF'
-    };
+  static Future<Response> createAnalysis(user_id, path) async {
+    print(path);
+    var headers = {};
     var request = http.MultipartRequest(
-        'POST', Uri.parse('http://127.0.0.1:8000/analysis/create/'));
+        'POST', Uri.parse('http://10.0.2.2:8000/analysis/create/'));
     request.fields.addAll({'user_id': user_id});
-    request.files
-        .add(await http.MultipartFile.fromPath('data', 'path'));
-    request.headers.addAll(headers);
+    request.files.add(await http.MultipartFile.fromPath('data', path));
 
     http.StreamedResponse response = await request.send();
+    final http.Response _response = await http.Response.fromStream(response);
 
     if (response.statusCode == 200) {
-      print(await response.stream.bytesToString());
+      return Response.fromJson(jsonDecode(_response.body));
     } else {
-      print(response.reasonPhrase);
+      throw Exception('Failed request.');
     }
   }
 }

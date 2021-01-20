@@ -94,9 +94,10 @@ class _MainPageState extends State<MainPage> {
                   appBarButton = IconButton(icon: Icon(Icons.info));
                   break;
                 case 2:
-                  currentPage = CreateAnalysisPage();
+                  currentPage =
+                      CreateAnalysisPage(widget.currentUser.id.toString());
                   currentColor = Colors.deepPurpleAccent;
-                  currentAddButton=null;
+                  currentAddButton = null;
                   currentTitle = "Analiz Raporu Oluştur";
                   appBarButton = IconButton(icon: Icon(Icons.info));
                   break;
