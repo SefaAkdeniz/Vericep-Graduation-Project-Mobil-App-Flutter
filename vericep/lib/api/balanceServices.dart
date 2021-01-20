@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:vericep/models/response.dart';
 
 class BalanceServices {
   Future getBalance(String id) async {
