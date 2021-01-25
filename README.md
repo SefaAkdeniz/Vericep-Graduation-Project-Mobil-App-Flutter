@@ -3,7 +3,7 @@
 Programming Language : Dart <br>
 Mobil Application Framework : Flutter <br>
 Backend API : https://github.com/SefaAkdeniz/Vericep-Graduation-Project-Backend-Django-MySQL
-## Proje Ekran Görüntüler
+## Proje Ekran Görüntüleri
 ![]()
 <kbd><img src="https://github.com/SefaAkdeniz/Vericep-Graduation-Project-Mobil-App-Flutter/blob/master/screenshot/login.png" height="480" width="270"></kbd>
 <kbd><img src="https://github.com/SefaAkdeniz/Vericep-Graduation-Project-Mobil-App-Flutter/blob/master/screenshot/loginFailed.png" height="480" width="270"></kbd>
