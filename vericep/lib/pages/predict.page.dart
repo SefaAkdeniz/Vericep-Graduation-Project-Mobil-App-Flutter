@@ -59,16 +59,15 @@ class _PredictPageState extends State<PredictPage> {
               MLServices.predict(widget.currentModel.url, body).then((value) {
                 print(value.result.toString());
                 if (value.result == 1) {
-                  Navigator.of(context).pop(true);
-                  _showDialog("Tebrikler", value.message, context);
+                  _showDialog("Sonuç", value.message, context);
                   print(value.message.toString());
                 } else {
-                  _showDialog("Maalesef", value.message, context);
+                  _showDialog("Sonuç", value.message, context);
                 }
               });
             }
             else{
-              _showDialog("Maalesef", "Lütfen tüm alanları doldurunuz.", context);
+              _showDialog("Hata", "Lütfen tüm alanları doldurunuz.", context);
             }
           },
         ),
